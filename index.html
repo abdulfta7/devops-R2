@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSecOps Bootcamp & Roadmap</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --security-color: #f43f5e;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --success-color: #22c55e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        header h1 span {
+            color: var(--security-color);
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .progress-container {
+            max-width: 900px;
+            margin: 0 auto 30px auto;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .progress-bar-bg {
+            background: var(--border-color);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, var(--accent-color), var(--security-color));
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .phase-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .phase-card:hover {
+            border-color: var(--accent-color);
+        }
+
+        .phase-header {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .phase-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .phase-title i {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .phase-title h2 {
+            font-size: 1.3rem;
+        }
+
+        .badge {
+            background: var(--security-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .phase-content {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .roadmap-list {
+            list-style: none;
+        }
+
+        .roadmap-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            transition: background 0.2s;
+        }
+
+        .roadmap-item:hover {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .roadmap-item input[type="checkbox"] {
+            margin-top: 5px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--security-color);
+            cursor: pointer;
+        }
+
+        .roadmap-item-details {
+            flex-grow: 1;
+        }
+
+        .roadmap-item-details label {
+            cursor: pointer;
+        }
+
+        .roadmap-item-details h4 {
+            font-size: 1.05rem;
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+
+        .roadmap-item-details p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .tools-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .phase-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fa-solid fa-shield-halved"></i> Dev<span>Sec</span>Ops Bootcamp</h1>
+        <p>خارطة الطريق الشاملة لدمج الأمان الرقمي في دورة حياة التطوير CI/CD</p>
+    </header>
+
+    <div class="progress-container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3><i class="fa-solid fa-chart-line"></i> نسبة التقدم في الـ Roadmap</h3>
+            <span id="progress-text" style="font-weight: bold; color: var(--accent-color);">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progress-bar"></div>
+        </div>
+    </div>
+
+    <div class="container" id="roadmap-container">
+        <!-- يتم توليد المحتوى بواسطة JavaScript -->
+    </div>
+
+    <footer>
+        <p>DevSecOps Bootcamp Roadmap &copy; 2026 - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        const devSecOpsData = [
+            {
+                phase: "المرحلة 1: الأساسيات (Fundamentals)",
+                icon: "fa-terminal",
+                level: "المستوى: مبتدئ",
+                items: [
+                    {
+                        title: "إتقان أنظمة Linux و Bash Scripting",
+                        desc: "إدارة الصلاحيات، التعامل مع الشبكات، وأتمتة المهام اليومية باستخدام Shell Scripts.",
+                        tools: ["Linux", "Bash", "SSH"]
+                    },
+                    {
+                        title: "أساسيات الشبكات والأمان (Networking & Security)",
+                        desc: "فهم بروتوكولات TCP/IP, DNS, HTTPS, SSL/TLS, والمفاهيم الأساسية للتشفير.",
+                        tools: ["Wireshark", "OpenSSL", "Nmap"]
+                    },
+                    {
+                        title: "إدارة النسخ والمصدر (Version Control & Git)",
+                        desc: "إتقان Git ودورات العمل (GitFlow) وكتابة Commit Messages آمنة بدون مفاتيح مسربة.",
+                        tools: ["Git", "GitHub", "GitLab"]
+                    }
+                ]
+            },
+            {
+                phase: "المرحلة 2: التطوير الآمن والتحليل (Secure Code & SAST)",
+                icon: "fa-code-lock",
+                level: "المستوى: متوسط",
+                items: [
+                    {
+                        title: "كتابة الكود الآمن (Secure Coding Standards)",
+                        desc: "فهم ثغرات OWASP Top 10 للويب وكيفية تفاديها أثناء برمجة التطبيقات.",
+                        tools: ["OWASP Top 10", "Snyk"]
+                    },
+                    {
+                        title: "فحص الكود المصدري الساكن (SAST)",
+                        desc: "دمج أدوات فحص الكود الآلي في البيئة التطويرية واكتشاف الثغرات قبل الـ Build.",
+                        tools: ["SonarQube", "Checkmarx", "Semgrep"]
+                    },
+                    {
+                        title: "فحص التبعيات وإدارة الاعتماديات (SCA)",
+                        desc: "تحليل مكتبات الأطراف الخارجية (Third-party Libraries) للتأكد من خلوها من الثغرات.",
+                        tools: ["Trivy", "OWASP Dependency-Check", "Renovate"]
+                    }
+                ]
+            },
+            {
+                phase: "المرحلة 3: الحاويات وأمنها (Container & Image Security)",
+                icon: "fa-box-archive",
+                level: "المستوى: متوسط+",
+                items: [
+                    {
+                        title: "أساسيات Docker وتأمين الحاويات",
+                        desc: "بناء Dockerfiles جيدة مع مراعاة تشغيل الحاويات بـ Non-root user واستخدام Multi-stage builds.",
+                        tools: ["Docker", "Hadolint"]
+                    },
+                    {
+                        title: "فحص صور الحاويات (Container Image Scanning)",
+                        desc: "فحص الصور المسجلة في الـ Container Registry بحثاً عن ثغرات OS أو المكتبات.",
+                        tools: ["Trivy", "Clair", "Grype"]
+                    }
+                ]
+            },
+            {
+                phase: "المرحلة 4: أتمتة خطوط الإمداد (Secure CI/CD Pipelines)",
+                icon: "fa-diagram-project",
+                level: "المستوى: متقدم",
+                items: [
+                    {
+                        title: "أتمتة الأمان داخل CI/CD",
+                        desc: "تضمين اختبارات الأمان (SAST, SCA, Secrets Detection) كخطوات إجبارية في أنبوب البناء.",
+                        tools: ["GitHub Actions", "GitLab CI", "Jenkins"]
+                    },
+                    {
+                        title: "كشف أسرار الكود (Secret Detection)",
+                        desc: "منع تسريب مفاتيح API، كروت الاعتماد، والشهادات داخل المراجع النصية (Repositories).",
+                        tools: ["GitLeaks", "TruffleHog"]
+                    },
+                    {
+                        title: "الاختبار الديناميكي للأمان (DAST)",
+                        desc: "فحص التطبيق الشغال من الخارج واكتشاف الثغرات أثناء التشغيل (Runtime).",
+                        tools: ["OWASP ZAP", "Nuclei"]
+                    }
+                ]
+            },
+            {
+                phase: "المرحلة 5: أمان البنية التحتية والمراقبة (IaC & Cloud Security)",
+                icon: "fa-cloud-shield",
+                level: "المستوى: خبير",
+                items: [
+                    {
+                        title: "تأمين البنية التحتية ككود (IaC Security)",
+                        desc: "فحص ملفات Terraform أو CloudFormation قبل تطبيقها لمنع الأخطاء التكوينية (Misconfigurations).",
+                        tools: ["Checkov", "tfsec", "KICS"]
+                    },
+                    {
+                        title: "تأمين Kubernetes (K8s Security)",
+                        desc: "تطبيق قواعد الأمان مثل RBAC, Network Policies, وفحص ملفات الـ Manifests.",
+                        tools: ["Kubectl", "Kyverno", "Falco"]
+                    },
+                    {
+                        title: "إدارة الأسرار والمراقبة (Secrets & Observability)",
+                        desc: "حفظ المفاتيح والشهادات بشكل مشفر مركزي وإدارة المراقبة والاستجابة للحوادث.",
+                        tools: ["HashiCorp Vault", "Prometheus", "Grafana"]
+                    }
+                ]
+            }
+        ];
+
+        const container = document.getElementById('roadmap-container');
+        let totalItems = 0;
+
+        function renderRoadmap() {
+            devSecOpsData.forEach((phaseData, phaseIndex) => {
+                const phaseCard = document.createElement('div');
+                phaseCard.className = 'phase-card';
+
+                let itemsHTML = '';
+                phaseData.items.forEach((item, itemIndex) => {
+                    totalItems++;
+                    const itemId = `item-${phaseIndex}-${itemIndex}`;
+                    const toolsHTML = item.tools.map(tool => `<span class="tag">${tool}</span>`).join('');
+
+                    itemsHTML += `
+                        <li class="roadmap-item">
+                            <input type="checkbox" id="${itemId}" onchange="updateProgress()">
+                            <div class="roadmap-item-details">
+                                <label for="${itemId}">
+                                    <h4>${item.title}</h4>
+                                    <p>${item.desc}</p>
+                                    <div class="tools-tags">${toolsHTML}</div>
+                                </label>
+                            </div>
+                        </li>
+                    `;
+                });
+
+                phaseCard.innerHTML = `
+                    <div class="phase-header">
+                        <div class="phase-title">
+                            <i class="fa-solid ${phaseData.icon}"></i>
+                            <h2>${phaseData.phase}</h2>
+                        </div>
+                        <span class="badge">${phaseData.level}</span>
+                    </div>
+                    <div class="phase-content">
+                        <ul class="roadmap-list">
+                            ${itemsHTML}
+                        </ul>
+                    </div>
+                `;
+
+                container.appendChild(phaseCard);
+            });
+        }
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            let checkedCount = 0;
+
+            checkboxes.forEach(box => {
+                if (box.checked) checkedCount++;
+            });
+
+            const percentage = Math.round((checkedCount / totalItems) * 100);
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            document.getElementById('progress-text').innerText = `${percentage}%`;
+        }
+
+        renderRoadmap();
+    </script>
+</body>
+</html>
